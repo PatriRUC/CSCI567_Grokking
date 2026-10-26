@@ -1,0 +1,113 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "conditions_per_seed": 630,
+  "total_result_rows": 1890,
+  "same_training_code": true,
+  "training_code_sha256": "e4aaa1ca8d5aea231fee35563fde786a8c3d760cb82e6c557c2b25c9571bdf19",
+  "same_config_except_seed": true,
+  "max_norm_relative_error": 2.384185791015625e-07,
+  "all_numeric_fields_finite": true,
+  "standard_deviation_definition": "sample SD, ddof=1, across seeds; not confidence interval",
+  "per_seed_training_seconds": [
+    1544.0296569131315,
+    1418.0123634636402,
+    1413.5677776783705
+  ],
+  "maximum_test_error_std": {
+    "n": 26826,
+    "alpha": 0.19952623149688797,
+    "std": 0.10652228599180637
+  },
+  "contrasts": {
+    "paper": {
+      "smallN_test_error_increase_alpha1_to10": {
+        "per_seed": [
+          0.6830000355839729,
+          0.648000031709671,
+          0.666500061750412
+        ],
+        "mean": 0.6658333763480186,
+        "std": 0.01750952369054083,
+        "all_positive": true
+      },
+      "largeN_test_error_increase_alpha1_to10": {
+        "per_seed": [
+          0.13249999284744263,
+          0.1105000376701355,
+          0.0964999794960022
+        ],
+        "mean": 0.11316667000452678,
+        "std": 0.018147546289542512,
+        "all_positive": true
+      },
+      "test_error_reduction_N200_to8000_at_alpha10": {
+        "per_seed": [
+          0.7200000360608101,
+          0.7040000259876251,
+          0.7425000369548798
+        ],
+        "mean": 0.7221666996677717,
+        "std": 0.019341239218544935,
+        "all_positive": true
+      },
+      "smallN_minus_largeN_alpha_effect": {
+        "per_seed": [
+          0.5505000427365303,
+          0.5374999940395355,
+          0.5700000822544098
+        ],
+        "mean": 0.5526667063434919,
+        "std": 0.01635801812209997,
+        "all_positive": true
+      },
+      "smallN_both_sides_worse_than_alpha1": true
+    },
+    "selected_full": {
+      "smallN_test_error_increase_alpha1_to10": {
+        "per_seed": [
+          0.6710999757051468,
+          0.6638999879360199,
+          0.6689000055193901
+        ],
+        "mean": 0.6679666563868523,
+        "std": 0.0036896221244595044,
+        "all_positive": true
+      },
+      "largeN_test_error_increase_alpha1_to10": {
+        "per_seed": [
+          0.12259995937347412,
+          0.11829996109008789,
+          0.09929996728897095
+        ],
+        "mean": 0.11339996258417766,
+        "std": 0.012398786101990772,
+        "all_positive": true
+      },
+      "test_error_reduction_N200_to8000_at_alpha10": {
+        "per_seed": [
+          0.7361999899148941,
+          0.7285999953746796,
+          0.7581999823451042
+        ],
+        "mean": 0.7409999892115593,
+        "std": 0.01537269664367046,
+        "all_positive": true
+      },
+      "smallN_minus_largeN_alpha_effect": {
+        "per_seed": [
+          0.5485000163316727,
+          0.545600026845932,
+          0.5696000382304192
+        ],
+        "mean": 0.5545666938026746,
+        "std": 0.013099754511697925,
+        "all_positive": true
+      },
+      "smallN_both_sides_worse_than_alpha1": true
+    }
+  }
+}

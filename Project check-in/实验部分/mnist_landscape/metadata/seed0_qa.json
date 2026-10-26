@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "seed_values": [
+    0
+  ],
+  "expected_conditions": 630,
+  "actual_conditions": 630,
+  "original_grid_conditions": 588,
+  "added_exact_slice_conditions": 42,
+  "completed_group_checkpoints": 30,
+  "maximum_norm_relative_error": 2.384185791015625e-07,
+  "norm_error_checked_at_scheduled_evaluations": true,
+  "all_numeric_fields_finite": true,
+  "total_group_wall_seconds": 1540.5526281930506,
+  "figure_files": 12,
+  "total_checkpoint_bytes": 2015760826,
+  "no_confidence_intervals": "One seed only; no cross-seed uncertainty estimated.",
+  "loss_units": "Reported loss is squared error summed over 10 outputs, averaged over samples; 10x element-mean MSE.",
+  "selected_full_evaluation": "Each model selected using sampled training loss, then evaluated on all N train / 10000 test samples."
+}

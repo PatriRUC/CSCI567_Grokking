@@ -1,0 +1,18 @@
+{
+  "paper": "Omnigrok: Grokking Beyond Algorithmic Data",
+  "official_repository": "https://github.com/KindXiaoming/Omnigrok",
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
+  "official_files": [
+    "mnist/landscape/mnist-landscape.ipynb",
+    "mnist/landscape/plot-mnist-landscape.ipynb"
+  ],
+  "implementation": "Independent reproduction based on official protocol, not unmodified upstream code.",
+  "training_code_sha256": "e4aaa1ca8d5aea231fee35563fde786a8c3d760cb82e6c557c2b25c9571bdf19",
+  "scope": "MNIST fixed-norm landscapes, Figure 3a-c",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "conditions_per_seed": 630
+}

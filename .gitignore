@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+data/
+generated/
+MNIST/
+*.pt
+*.pth
+*.tar.gz
+*.log
