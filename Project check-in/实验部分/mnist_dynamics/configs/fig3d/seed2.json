@@ -1,0 +1,70 @@
+{
+  "seed": 2,
+  "experiment": "fig3d",
+  "figure_source": "paper Fig.3d title: \"MNIST Grokking With Varying alpha, 1000 Train Points, gamma=1e-4\"; colour bar alpha 1-10",
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
+  "official_notebook": "mnist/grokking/mnist-grokking.ipynb",
+  "models": [
+    [
+      1000,
+      1.0
+    ],
+    [
+      1000,
+      2.0
+    ],
+    [
+      1000,
+      3.0
+    ],
+    [
+      1000,
+      4.0
+    ],
+    [
+      1000,
+      5.0
+    ],
+    [
+      1000,
+      6.0
+    ],
+    [
+      1000,
+      7.0
+    ],
+    [
+      1000,
+      8.0
+    ],
+    [
+      1000,
+      9.0
+    ],
+    [
+      1000,
+      10.0
+    ]
+  ],
+  "steps": 100000,
+  "batch_size": 200,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "optimizer": "torch.optim.AdamW (defaults otherwise)",
+  "loss": "nn.MSELoss mean over batch and 10 outputs, one-hot targets",
+  "dtype": "float64",
+  "tf32": false,
+  "training_subset": "first N MNIST training samples (official Subset(range(N)); paper text says random subset)",
+  "initialization": "official Kaiming-uniform base model from torch.manual_seed(seed), all parameters x alpha; shared across models",
+  "train_seed_rule": "seed*1000000 + 10*N + index of alpha in [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]",
+  "evaluation": "full train subset and full 10,000 test set at every scheduled step (after that many updates)",
+  "evaluation_schedule": "steps 0-99 every step, 100-990 every 10, 1000-100000 every 100",
+  "norms": "global and per-layer L2 norms (weight+bias) recorded after every update",
+  "fit_checkpoint": "first scheduled step with full train accuracy >= 0.99; model slice, AdamW slice and sampler state saved",
+  "protocol_changes": [
+    "batched independent models",
+    "GPU tensor cache",
+    "explicit per-model batch RNG",
+    "dense full-split evaluation instead of 150 log points"
+  ]
+}

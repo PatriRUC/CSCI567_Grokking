@@ -1,0 +1,58 @@
+{
+  "experiment": "fig3e",
+  "figure_source": "paper Fig.3e: \"weight decay ~5e-3\", \"Steps to Test Accuracy > 60%\", N=128*2^k read from the figure; alpha=8 is our assumption",
+  "weight_decay": 0.005,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "models": 9,
+  "evaluation_points": 1181,
+  "total_curve_rows": 31887,
+  "same_config_except_seed": true,
+  "all_numeric_fields_finite": true,
+  "steps": 100000,
+  "fit_definition": "first scheduled step with full train accuracy >= 0.99",
+  "threshold_definition": "first scheduled step with full test accuracy >= threshold; empty if not reached within budget",
+  "standard_deviation_definition": "sample SD, ddof=1, across seeds; reported only when all seeds reached; not confidence interval",
+  "steps_to_test_60_mean": {
+    "N128_alpha8": "",
+    "N256_alpha8": 41033.333333333336,
+    "N512_alpha8": 38133.333333333336,
+    "N1024_alpha8": 22066.666666666668,
+    "N2048_alpha8": 17600.0,
+    "N4096_alpha8": 3233.3333333333335,
+    "N8192_alpha8": 2533.3333333333335,
+    "N16384_alpha8": 3800.0,
+    "N32768_alpha8": 2233.3333333333335
+  },
+  "thresholds_not_reached": {
+    "N128_alpha8": {
+      "0.5": 3,
+      "0.6": 3,
+      "0.7": 3,
+      "0.8": 3,
+      "0.9": 3
+    },
+    "N256_alpha8": {
+      "0.8": 3,
+      "0.9": 3
+    },
+    "N512_alpha8": {
+      "0.9": 3
+    },
+    "N1024_alpha8": {
+      "0.9": 3
+    },
+    "N2048_alpha8": {
+      "0.9": 1
+    },
+    "N4096_alpha8": {
+      "0.9": 1
+    },
+    "N8192_alpha8": {},
+    "N16384_alpha8": {},
+    "N32768_alpha8": {}
+  }
+}
