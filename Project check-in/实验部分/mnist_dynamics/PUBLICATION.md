@@ -16,7 +16,7 @@
 | `part-c-full-runs-34.zip` | 34条完成运行的全部原始文件，含136个init/fit/latest/final检查点、34条范数轨迹、数据索引、配置、命令、环境和日志；逐文件SHA256清单内置 |
 | `SHA256SUMS.txt` | 两个ZIP的SHA256，供下载后独立检查 |
 
-MNIST公共缓存与Python虚拟环境不打包，按README重建；取消的部分运行不属于完成结果，仍保留本地并在`metadata/cancelled_artifacts_index.json`留有索引。早先本地审阅收据是历史阶段记录；本次远端资产信息见`metadata/publication.json`。
+MNIST公共缓存与Python虚拟环境不打包，按README重建；取消的部分运行不属于完成结果，仍保留本地并在`metadata/cancelled_artifacts_index.json`留有索引。早先本地审阅收据是历史阶段记录；本次已发布资产信息见[main分支发布收据](https://github.com/PatriRUC/CSCI567_Grokking/blob/main/Project%20check-in/实验部分/mnist_dynamics/metadata/publication.json)。Release标签固定于实验交付提交2512473，该提交内的发布准备记录为上传前快照；后续提交仅补齐正式发布收据和日志。
 
 从本仓库克隆后，下载资产并检查哈希。PowerShell示例：
 

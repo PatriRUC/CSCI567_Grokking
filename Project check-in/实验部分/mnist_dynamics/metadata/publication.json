@@ -1,5 +1,5 @@
 {
-  "status": "prepared_locally_not_yet_uploaded",
+  "status": "published_and_remote_sha256_verified",
   "prepared_utc": "2026-10-27T21:56:57.536348+00:00",
   "repository": "https://github.com/PatriRUC/CSCI567_Grokking",
   "release_tag": "part-c-checkin-2026-10-27",
@@ -11,17 +11,42 @@
   "checkpoints": 136,
   "assets": [
     {
-      "name": "part-c-review-34.zip",
-      "bytes": 91343884,
-      "sha256": "9544d378fc4b60bb73162d376a1d7d6c686a082dbfbfc97887041dfcd40345df",
-      "url": "https://github.com/PatriRUC/CSCI567_Grokking/releases/download/part-c-checkin-2026-10-27/part-c-review-34.zip"
-    },
-    {
       "name": "part-c-full-runs-34.zip",
+      "id": 683000375,
       "bytes": 516429902,
       "sha256": "9637f31385f1ebccb1ec614c8cf272535295d7752796c4fa8f0f965627037f3e",
-      "url": "https://github.com/PatriRUC/CSCI567_Grokking/releases/download/part-c-checkin-2026-10-27/part-c-full-runs-34.zip"
+      "url": "https://github.com/PatriRUC/CSCI567_Grokking/releases/download/part-c-checkin-2026-10-27/part-c-full-runs-34.zip",
+      "remote_state": "uploaded"
+    },
+    {
+      "name": "part-c-review-34.zip",
+      "id": 683000377,
+      "bytes": 91343884,
+      "sha256": "9544d378fc4b60bb73162d376a1d7d6c686a082dbfbfc97887041dfcd40345df",
+      "url": "https://github.com/PatriRUC/CSCI567_Grokking/releases/download/part-c-checkin-2026-10-27/part-c-review-34.zip",
+      "remote_state": "uploaded"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "id": 683000374,
+      "bytes": 177,
+      "sha256": "7ed32c88d65216675f8ac4547851b0b83d32184ac4c80bb9f9d7da7706a77567",
+      "url": "https://github.com/PatriRUC/CSCI567_Grokking/releases/download/part-c-checkin-2026-10-27/SHA256SUMS.txt",
+      "remote_state": "uploaded"
     }
   ],
-  "note": "Archive logs and SHA manifests describe their packaging snapshot. Repository log continues through publication; final remote checks append to workspace log.md."
+  "note": "Archive logs and SHA manifests describe their packaging snapshot. Repository log continues through publication; final remote checks append to workspace log.md.",
+  "verified_utc": "2026-10-27T22:01:07.334533+00:00",
+  "published_utc": "2026-10-27T22:01:06Z",
+  "release_id": 426030422,
+  "code_commit": "251247377b983d214507e2da692ae4052a27c589",
+  "release_tag_commit": "251247377b983d214507e2da692ae4052a27c589",
+  "verification": {
+    "all_asset_sizes_and_github_sha256_match_local": true,
+    "partc_git_files_verified": 126,
+    "frozen_source_and_original_manifest_remote_hashes_verified": true,
+    "review_bundle_offline_hashed_files": 467,
+    "full_runs_bundle_offline_hashed_files": 494,
+    "main_verified_at_code_commit": "251247377b983d214507e2da692ae4052a27c589"
+  }
 }
