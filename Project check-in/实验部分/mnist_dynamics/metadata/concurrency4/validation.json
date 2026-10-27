@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "workers": 4,
+  "total_wall_seconds": 11.44602869998198,
+  "checks": [
+    {
+      "worker": "worker0",
+      "parameter_optimizer_error": 0.0,
+      "norm_error": 0.0,
+      "train_seconds": 7.120868600002723
+    },
+    {
+      "worker": "worker1",
+      "parameter_optimizer_error": 0.0,
+      "norm_error": 0.0,
+      "train_seconds": 7.127006800001254
+    },
+    {
+      "worker": "worker2",
+      "parameter_optimizer_error": 0.0,
+      "norm_error": 0.0,
+      "train_seconds": 7.178970000008121
+    },
+    {
+      "worker": "worker3",
+      "parameter_optimizer_error": 0.0,
+      "norm_error": 0.0,
+      "train_seconds": 7.276882099977229
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "event_observed": false,
+  "t60": null,
+  "previous_eval_step": null,
+  "threshold_status": "incomplete",
+  "last_observed_step": 3335,
+  "budget_steps": 100000,
+  "fit_step": 3500,
+  "fit_checkpoint_exists": false
+}

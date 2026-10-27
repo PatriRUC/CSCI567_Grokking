@@ -1,0 +1,26 @@
+{
+  "original_expected_runs": 42,
+  "expected_runs": 34,
+  "cancelled_by_user": 8,
+  "cancelled_run_ids": [
+    "fig3e_n16000_a8_s0",
+    "fig3e_n16000_a8_s1",
+    "fig3e_n16000_a8_s2",
+    "fig3e_n30000_a8_s0",
+    "fig3e_n30000_a8_s1",
+    "fig3e_n30000_a8_s2",
+    "fig3e_n8000_a8_s1",
+    "fig3e_n8000_a8_s2"
+  ],
+  "scope_change_request": "取消后续排队的N=8000、16000、30000任务，只保留已经进行的这一条跑完。",
+  "primary_runs": 33,
+  "supplementary_runs": 1,
+  "primary_fig3e_ns": [
+    200,
+    500,
+    1000,
+    2000,
+    4000
+  ],
+  "completion_definition": "All user-retained runs, excluding explicitly cancelled jobs; supplementary single seeds do not receive three-seed means."
+}

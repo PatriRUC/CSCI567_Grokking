@@ -1,0 +1,12 @@
+{
+  "1000": {
+    "update_and_norm_seconds": 0.002001851600012742,
+    "full_train_test_eval_seconds": 0.02899069999693893,
+    "estimated_100k_with_205_evals_seconds": 206.12825350064668
+  },
+  "30000": {
+    "update_and_norm_seconds": 0.001981324799999129,
+    "full_train_test_eval_seconds": 0.10051399999065325,
+    "estimated_100k_with_205_evals_seconds": 218.73784999799682
+  }
+}

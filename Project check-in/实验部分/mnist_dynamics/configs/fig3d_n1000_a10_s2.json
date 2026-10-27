@@ -1,0 +1,28 @@
+{
+  "phase": "fig3d",
+  "n": 1000,
+  "alpha": 10.0,
+  "seed": 2,
+  "steps": 100000,
+  "schedule_budget": 100000,
+  "batch_size": 200,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "dtype": "float64",
+  "device": "cuda",
+  "fit_accuracy": 0.99,
+  "fit_mse": 0.001,
+  "fit_check_every": 0,
+  "checkpoint_every": 10000,
+  "reproduction_level": "qualitative",
+  "subset_rule": "first_N",
+  "sampler": "reshuffle_each_epoch_independent_generator",
+  "evaluation": "full_split_fixed_order",
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
+  "schema_version": 1
+}

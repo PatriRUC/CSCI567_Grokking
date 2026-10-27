@@ -1,0 +1,56 @@
+{
+  "official_repository": "https://github.com/KindXiaoming/Omnigrok",
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
+  "official_file": "mnist/grokking/mnist-grokking.ipynb",
+  "official_sha256": "e930648fda27ad67f6d31a7039deccf7a70e89ca659369da328124797aa67b0f",
+  "team_base_commit": "ed040b7fa7ebbc95b928bb990829bed266ffcb6f",
+  "execution": "local Windows RTX 4060 Laptop",
+  "protocol_level": "qualitative reproduction with disclosed project choices",
+  "known": {
+    "fig3d_n": 1000,
+    "fig3d_weight_decay": 0.0001,
+    "fig3e_weight_decay": 0.005,
+    "budget": 100000
+  },
+  "project_choices": {
+    "fig3d_alphas": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "fig3e_alpha": 8,
+    "fig3e_ns": [
+      200,
+      500,
+      1000,
+      2000,
+      4000,
+      8000,
+      16000,
+      30000
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "subset": "first N",
+    "test_threshold": "strict > .60"
+  },
+  "deviations": [
+    "explicit seeds and paired initializations/batches",
+    "independent training RNG",
+    "full deterministic evaluation with all tail samples",
+    "final-step evaluation",
+    "per-step global and layer norms",
+    "training-only fitting criterion and resumable checkpoints"
+  ],
+  "original_unknown": [
+    "exact figure 3d alpha grid",
+    "figure 3e initialization scale",
+    "figure 3e N grid, evaluation interval, original seeds and censoring mean rule"
+  ]
+}

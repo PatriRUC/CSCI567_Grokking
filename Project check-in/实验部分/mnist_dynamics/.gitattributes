@@ -1,0 +1,9 @@
+# Frozen source and original-manifest byte hashes must survive Windows checkout.
+* text=auto eol=lf
+# Keep the original plan fixture byte-for-byte (its historical hash uses CRLF).
+configs/manifest_original_42.json -text
+*.png -text
+*.pdf -text
+*.npy -text
+*.pt -text
+*.zip -text

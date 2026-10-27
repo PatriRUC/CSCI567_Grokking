@@ -1,0 +1,241 @@
+{
+  "runs": 34,
+  "artifacts_complete": true,
+  "all_known_exit_codes_zero": true,
+  "direct_codes": 0,
+  "derived_codes": 27,
+  "not_retained": 7,
+  "details": [
+    {
+      "run_id": "fig3d_n1000_a8_s0",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3d_n1000_a1_s0",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3e_n1000_a8_s0",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3e_n8000_a8_s0",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3d_n1000_a1_s1",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3d_n1000_a1_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:08:02-07:00：完成 `fig3d_n1000_a1_s2`，100000 steps，进程内计时 206.3 秒；t60=4，拟合 step=667。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a2_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:11:32-07:00：完成 `fig3d_n1000_a2_s0`，100000 steps，进程内计时 206.7 秒；t60=6，拟合 step=667。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a2_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:15:02-07:00：完成 `fig3d_n1000_a2_s1`，100000 steps，进程内计时 206.3 秒；t60=6，拟合 step=667。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a2_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:18:33-07:00：完成 `fig3d_n1000_a2_s2`，100000 steps，进程内计时 206.2 秒；t60=6，拟合 step=667。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a4_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:22:41-07:00：完成 `fig3d_n1000_a4_s0`，100000 steps，进程内计时 244.6 秒；t60=667，拟合 step=1334。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a4_s1",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    },
+    {
+      "run_id": "fig3d_n1000_a4_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:43:10-07:00：完成 `fig3d_n1000_a4_s2`，100000 steps，进程内计时 548.1 秒；t60=667，拟合 step=1334。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a6_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T21:51:49-07:00：完成 `fig3d_n1000_a6_s0`，100000 steps，进程内计时 511.9 秒；t60=18009，拟合 step=2668。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a6_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:00:38-07:00：完成 `fig3d_n1000_a6_s1`，100000 steps，进程内计时 521.2 秒；t60=16008，拟合 step=2668。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a6_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:09:35-07:00：完成 `fig3d_n1000_a6_s2`，100000 steps，进程内计时 528.8 秒；t60=18009，拟合 step=2668。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:18:14-07:00：完成 `fig3d_n1000_a8_s1`，100000 steps，进程内计时 510.9 秒；t60=32683，拟合 step=4002。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a8_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:25:20-07:00：完成 `fig3d_n1000_a8_s2`，100000 steps，进程内计时 421.9 秒；t60=36685，拟合 step=4002。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a10_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:32:27-07:00：完成 `fig3d_n1000_a10_s0`，100000 steps，进程内计时 420.9 秒；t60=62698，拟合 step=4669。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a10_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:40:24-07:00：完成 `fig3d_n1000_a10_s1`，100000 steps，进程内计时 470.0 秒；t60=53360，拟合 step=4669。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3d_n1000_a10_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:49:08-07:00：完成 `fig3d_n1000_a10_s2`，100000 steps，进程内计时 517.3 秒；t60=62031，拟合 step=4669。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n200_a8_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T22:58:33-07:00：完成 `fig3e_n200_a8_s0`，100000 steps，进程内计时 557.2 秒；t60=None，拟合 step=1000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n200_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:08:18-07:00：完成 `fig3e_n200_a8_s1`，100000 steps，进程内计时 576.8 秒；t60=None，拟合 step=1000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n200_a8_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:17:59-07:00：完成 `fig3e_n200_a8_s2`，100000 steps，进程内计时 572.4 秒；t60=None，拟合 step=1000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n500_a8_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:27:00-07:00：完成 `fig3e_n500_a8_s0`，100000 steps，进程内计时 532.8 秒；t60=39500，拟合 step=2000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n500_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:35:09-07:00：完成 `fig3e_n500_a8_s1`，100000 steps，进程内计时 480.7 秒；t60=37500，拟合 step=2000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n500_a8_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:38:31-07:00：完成 `fig3e_n500_a8_s2`，100000 steps，进程内计时 198.4 秒；t60=38500，拟合 step=2000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n1000_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:42:09-07:00：完成 `fig3e_n1000_a8_s1`，100000 steps，进程内计时 213.5 秒；t60=26500，拟合 step=3500。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n1000_a8_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:46:27-07:00：完成 `fig3e_n1000_a8_s2`，100000 steps，进程内计时 253.0 秒；t60=29500，拟合 step=3500。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n2000_a8_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:49:58-07:00：完成 `fig3e_n2000_a8_s0`，100000 steps，进程内计时 205.1 秒；t60=19500，拟合 step=15000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n2000_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:53:28-07:00：完成 `fig3e_n2000_a8_s1`，100000 steps，进程内计时 204.8 秒；t60=18500，拟合 step=15500。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n2000_a8_s2",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-26T23:56:58-07:00：完成 `fig3e_n2000_a8_s2`，100000 steps，进程内计时 205.1 秒；t60=19000，拟合 step=15000。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n4000_a8_s0",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-27T13:42:44-07:00：完成 `fig3e_n4000_a8_s0`，100000 steps，进程内计时 49541.7 秒；t60=4000，拟合 step=18500。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n4000_a8_s1",
+      "exit_code": 0,
+      "source": "derived_from_scheduler_success_log",
+      "evidence": "- 2026-10-27T13:48:22-07:00：完成 `fig3e_n4000_a8_s1`，100000 steps，进程内计时 335.5 秒；t60=4000，拟合 step=32500。这是单次结果，最终统一汇总。",
+      "rationale": "The scheduler writes this completion line only after process.poll() returns 0."
+    },
+    {
+      "run_id": "fig3e_n4000_a8_s2",
+      "exit_code": null,
+      "source": "not_retained",
+      "evidence": "Complete output artifacts passed independent metrics and checkpoint audits; the original exit code was not retained."
+    }
+  ]
+}

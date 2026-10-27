@@ -1,0 +1,23 @@
+{
+  "data_and_documents_verified": true,
+  "timestamp_utc": "2026-10-27T21:21:08.016176+00:00",
+  "checks": {
+    "scope_revision_evidence": "metadata/user_cancellation.json and original manifest SHA verified",
+    "complete_runs": 34,
+    "primary_runs": 33,
+    "supplementary_runs": 1,
+    "cancelled": 8,
+    "figure3d": "6 alpha conditions x 3 seeds, all complete",
+    "figure3e": "5 primary N conditions x 3 seeds, plus N8000 seed0 separately labelled",
+    "raw_data": "All retained configurations, full evaluation schedules, counts, losses and 100001-row norm traces passed independent analysis",
+    "checkpoints": "136 states passed CPU model norm/precision/optimizer/sampler/index/source hash audit",
+    "recovery": "Actual fit checkpoint replay: 200 norm steps exact; smoke full state resume exact",
+    "statistics": "Only three reached primary seeds receive ordinary t60 mean/SD; three N200 runs are censored; user cancellations excluded",
+    "visual": "All 5 final PNGs and 5 PDF renders viewed; no clipping or overlap observed",
+    "handoff": "A abstract 220 total characters; B protocol differences; D reference fit.pt and norm/sampler instructions",
+    "historical_process_exit_codes": "27 reconstructed from scheduler success logs; 7 not retained and disclosed",
+    "local_execution_and_logging": "Local training only; operation and online access history in workspace log.md; no remote push",
+    "git_scope": "Only three overview README updates plus new Part C directory; raw data and weights ignored",
+    "archive_integrity": "Initial ZIP CRC/SHA/config/state/scope verification passed; final exact ZIP hash is recorded in the external completion receipt"
+  }
+}

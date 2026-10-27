@@ -1,0 +1,10 @@
+runs/
+data/
+__pycache__/
+.venv/
+*.pyc
+metadata/validation/continuous/
+metadata/validation/split/
+metadata/concurrency*/worker*/
+metadata/reference_checkpoint_replay/checkpoints/
+metadata/reference_checkpoint_replay/norms.npy

@@ -1,0 +1,73 @@
+{
+  "render_passed": true,
+  "visual_inspection_required": false,
+  "pdfs": [
+    {
+      "file": "figure3d.pdf",
+      "pages": 1,
+      "bytes": 49034,
+      "sha256": "ad12955bf220874816411ae4853e3520e2160629c0fcf38b8c598738e1d822b0",
+      "rendered_png": "D:\\USC \u4f5c\u4e1a\\CSCI567\\tmp\\pdfs\\partc-final\\figure3d.png",
+      "rendered_size": [
+        1214,
+        700
+      ]
+    },
+    {
+      "file": "figure3d_by_seed.pdf",
+      "pages": 1,
+      "bytes": 41177,
+      "sha256": "6f44d06d767e3daaf91fb89a2c5bac2683adf863ab122b473802f2c023c21ec1",
+      "rendered_png": "D:\\USC \u4f5c\u4e1a\\CSCI567\\tmp\\pdfs\\partc-final\\figure3d_by_seed.png",
+      "rendered_size": [
+        1574,
+        854
+      ]
+    },
+    {
+      "file": "figure3d_diagnostics.pdf",
+      "pages": 1,
+      "bytes": 41686,
+      "sha256": "55e3e6392438bd247093b754582749f8b86693ee5c789fa7edae5c584a3239e5",
+      "rendered_png": "D:\\USC \u4f5c\u4e1a\\CSCI567\\tmp\\pdfs\\partc-final\\figure3d_diagnostics.png",
+      "rendered_size": [
+        1574,
+        930
+      ]
+    },
+    {
+      "file": "figure3e.pdf",
+      "pages": 1,
+      "bytes": 17486,
+      "sha256": "758dd0d22956698021cdebfd2a63e608e42680b0b67d7a120211e65c3d435817",
+      "rendered_png": "D:\\USC \u4f5c\u4e1a\\CSCI567\\tmp\\pdfs\\partc-final\\figure3e.png",
+      "rendered_size": [
+        1094,
+        663
+      ]
+    },
+    {
+      "file": "reference_diagnostics.pdf",
+      "pages": 1,
+      "bytes": 25647,
+      "sha256": "e3b4813cb164e5d07fdd75bf47102be6862458f24a360381da932ee06cf4f544",
+      "rendered_png": "D:\\USC \u4f5c\u4e1a\\CSCI567\\tmp\\pdfs\\partc-final\\reference_diagnostics.png",
+      "rendered_size": [
+        1814,
+        552
+      ]
+    }
+  ],
+  "pdfinfo": "C:\\Users\\LENOVO\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin\\pdfinfo.exe",
+  "pdftoppm": "C:\\Users\\LENOVO\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\poppler\\Library\\bin\\pdftoppm.exe",
+  "visual_inspection_completed": true,
+  "visual_inspection_timestamp_utc": "2026-10-27T21:13:24.742075+00:00",
+  "visual_inspection_notes": "All five final PDF renders viewed. Axes, legends, labels, reference guides and reduced-scope/supplement markers are readable; no clipping or overlap observed. Final Figure 3e PNG also viewed.",
+  "png_exports_inspected": [
+    "figure3d",
+    "figure3d_by_seed",
+    "figure3d_diagnostics",
+    "figure3e",
+    "reference_diagnostics"
+  ]
+}

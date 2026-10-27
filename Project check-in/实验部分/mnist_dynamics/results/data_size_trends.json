@@ -1,0 +1,23 @@
+[
+  {
+    "seed": 0,
+    "planned_n_count": 5,
+    "reached": 4,
+    "censored": 1,
+    "observed_adjacent_increases": []
+  },
+  {
+    "seed": 1,
+    "planned_n_count": 5,
+    "reached": 4,
+    "censored": 1,
+    "observed_adjacent_increases": []
+  },
+  {
+    "seed": 2,
+    "planned_n_count": 5,
+    "reached": 4,
+    "censored": 1,
+    "observed_adjacent_increases": []
+  }
+]

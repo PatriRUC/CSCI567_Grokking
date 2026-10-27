@@ -1,0 +1,35 @@
+{
+  "complete": true,
+  "completed_runs": 34,
+  "missing": [],
+  "original_expected_runs": 42,
+  "expected_runs": 34,
+  "cancelled_by_user": 8,
+  "cancelled_run_ids": [
+    "fig3e_n16000_a8_s0",
+    "fig3e_n16000_a8_s1",
+    "fig3e_n16000_a8_s2",
+    "fig3e_n30000_a8_s0",
+    "fig3e_n30000_a8_s1",
+    "fig3e_n30000_a8_s2",
+    "fig3e_n8000_a8_s1",
+    "fig3e_n8000_a8_s2"
+  ],
+  "scope_change_request": "\u53d6\u6d88\u540e\u7eed\u6392\u961f\u7684N=8000\u300116000\u300130000\u4efb\u52a1\uff0c\u53ea\u4fdd\u7559\u5df2\u7ecf\u8fdb\u884c\u7684\u8fd9\u4e00\u6761\u8dd1\u5b8c\u3002",
+  "primary_runs": 33,
+  "supplementary_runs": 1,
+  "primary_fig3e_ns": [
+    200,
+    500,
+    1000,
+    2000,
+    4000
+  ],
+  "completion_definition": "All user-retained runs, excluding explicitly cancelled jobs; supplementary single seeds do not receive three-seed means.",
+  "all_complete_runs_passed": true,
+  "threshold": "strict > 0.60 on full test split",
+  "norm_rows_per_formal_run": 100001,
+  "standard_deviation": "sample SD, ddof=1",
+  "full_test_schedule_verified": true,
+  "mean_policy": "only all three planned seeds reached; never substitute budget for missing t60"
+}

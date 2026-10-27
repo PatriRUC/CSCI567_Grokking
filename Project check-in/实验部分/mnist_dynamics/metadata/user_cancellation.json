@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-10-27T13:56:04-07:00",
+  "source": "explicit user request in side-conversation annotation 1",
+  "request": "取消后续排队的N=8000、16000、30000任务，只保留已经进行的这一条跑完。",
+  "original_planned_runs": 42,
+  "retained_completed_runs": 34,
+  "cancelled_runs": [
+    {
+      "run_id": "fig3e_n8000_a8_s1",
+      "config": "configs/fig3e_n8000_a8_s1.json",
+      "output": "runs/fig3e_n8000_a8_s1",
+      "n": 8000,
+      "seed": 1,
+      "state": "cancelled_by_user",
+      "output_directory_exists": true,
+      "last_recorded_step": 22000,
+      "state_before_cancellation": "running"
+    },
+    {
+      "run_id": "fig3e_n8000_a8_s2",
+      "config": "configs/fig3e_n8000_a8_s2.json",
+      "output": "runs/fig3e_n8000_a8_s2",
+      "n": 8000,
+      "seed": 2,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n16000_a8_s0",
+      "config": "configs/fig3e_n16000_a8_s0.json",
+      "output": "runs/fig3e_n16000_a8_s0",
+      "n": 16000,
+      "seed": 0,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n16000_a8_s1",
+      "config": "configs/fig3e_n16000_a8_s1.json",
+      "output": "runs/fig3e_n16000_a8_s1",
+      "n": 16000,
+      "seed": 1,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n16000_a8_s2",
+      "config": "configs/fig3e_n16000_a8_s2.json",
+      "output": "runs/fig3e_n16000_a8_s2",
+      "n": 16000,
+      "seed": 2,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n30000_a8_s0",
+      "config": "configs/fig3e_n30000_a8_s0.json",
+      "output": "runs/fig3e_n30000_a8_s0",
+      "n": 30000,
+      "seed": 0,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n30000_a8_s1",
+      "config": "configs/fig3e_n30000_a8_s1.json",
+      "output": "runs/fig3e_n30000_a8_s1",
+      "n": 30000,
+      "seed": 1,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    },
+    {
+      "run_id": "fig3e_n30000_a8_s2",
+      "config": "configs/fig3e_n30000_a8_s2.json",
+      "output": "runs/fig3e_n30000_a8_s2",
+      "n": 30000,
+      "seed": 2,
+      "state": "cancelled_by_user",
+      "output_directory_exists": false
+    }
+  ],
+  "completed_n8000_seed0_preserved": true,
+  "original_manifest_backup": "configs/manifest_original_42.json",
+  "original_manifest_sha256": "b85fc7db84c8306cb911e11855b95c30ab56c4e7328ccfb9ec13b5aff3767990",
+  "current_run": "fig3e_n4000_a8_s2",
+  "current_run_state": "complete",
+  "current_run_step": 100000,
+  "process_action": "A subsequent verification found a scheduler that still held the old queue and had started cancelled run fig3e_n8000_a8_s1. That scheduler and only that cancelled worker were stopped.",
+  "initial_observation_no_matching_process": true,
+  "process_actions": [
+    {
+      "PID": 29812,
+      "Role": "scheduler",
+      "Command": "\"C:\\Users\\LENOVO\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" -u code/run_sweep.py --max-concurrent 1"
+    },
+    {
+      "PID": 11732,
+      "Role": "user-cancelled worker",
+      "RunID": "fig3e_n8000_a8_s1",
+      "Command": "\"D:\\USC 作业\\CSCI567\\.venv-partc\\Scripts\\python.exe\" \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\code\\train_dynamics.py\" --config \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\configs\\fig3e_n8000_a8_s1.json\" --output \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\runs\\fig3e_n8000_a8_s1\""
+    },
+    {
+      "PID": 40768,
+      "Role": "user-cancelled worker",
+      "RunID": "fig3e_n8000_a8_s1",
+      "Command": "\"C:\\Users\\LENOVO\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\code\\train_dynamics.py\" --config \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\configs\\fig3e_n8000_a8_s1.json\" --output \"D:\\USC 作业\\CSCI567\\Project\\CSCI567_Grokking\\Project check-in\\实验部分\\mnist_dynamics\\runs\\fig3e_n8000_a8_s1\""
+    }
+  ],
+  "cancellation_enforced_timestamp": "2026-10-27T13:58:13-07:00",
+  "queue_verification": {
+    "default_effective_runs": 34,
+    "original_plan_effective_runs": 34,
+    "current_manifest_entries": 42,
+    "cancelled": 8,
+    "pending": 0,
+    "note": "The immutable/original plan may retain 42 entries; the persistent cancellation filter excludes the 8 IDs before any launch."
+  },
+  "final_scope_verification": {
+    "current_manifest_entries": 34,
+    "effective_runs": 34,
+    "cancelled": 8,
+    "pending": 0,
+    "active": 0
+  }
+}
