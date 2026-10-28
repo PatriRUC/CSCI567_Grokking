@@ -1,6 +1,6 @@
 {
   "README.md": "d9beca9484573b36e4e895e9880162608657291c7539984925c205ce83584e38",
-  "code/aggregate_seeds.py": "791ffc55c7fd1b00f7aba554fd66ff072ebd83e14df2053416accaa78cda68e9",
+  "code/aggregate_seeds.py": "21d00c38e717c0a82a94e0322eee1b7022989570df8953c7434b56489a7a3de3",
   "code/collect_results.py": "b28888053ed530379cb21376de9c6441dd692386f8344d2bc052652b9574c91b",
   "code/make_figures.py": "dc0729626eec2a1862ed417c3edf5b7226df651e3a28962c86e74baf1582c72a",
   "code/run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4",
@@ -14,8 +14,8 @@
   "figures/fig3d/figure3d_seeds012.pdf": "ef11dbcccb3923413ff750fac0f7b6f5b8e08d92007510ea7f69cf5031a3eef1",
   "figures/fig3d/figure3d_seeds012.png": "3dc1b5e74d085d7861e54e54ac5a60feb69793e2b1ec7e773f09e0a8af4c6376",
   "figures/fig3d/figure3d_weight_norm_seeds012.png": "77a8a696e7d74c6cb8b2f492d035cb67aec73fa7168d7932de0b1ebe517278a1",
-  "figures/fig3e/figure3e_seeds012.pdf": "4c946992b90f2b00b1c93c78296408c618c0799c3932c8e8b95f40d944cf1a29",
-  "figures/fig3e/figure3e_seeds012.png": "aac629cdc927c74b8ba5f4eef6dbf04dc59b69c1d1f1a64570fbfdcf67792791",
+  "figures/fig3e/figure3e_seeds012.pdf": "2e1a8a78572a87f371292724d1747d9cff9474f77ef8005051990ed89a5dcc77",
+  "figures/fig3e/figure3e_seeds012.png": "8baa9551191728da2f7473a670010e63e86aad13a3a3714c91d873c8d77c03d7",
   "figures/fig3e/figure3e_test_curves_by_seed.png": "9ce63a4538bd3e759702c1becfacf5e7d155381326b582c0a440d220eecc4445",
   "metadata/environment.json": "e20c8d99225071618761e16e686a1480e9d50dc67512deb74124e942d0ac0118",
   "metadata/fig3d/aggregate_qa.json": "464d84d9d5c3030617a0db250f9491849d8705b0a344e8bb489ca90103ed1f24",

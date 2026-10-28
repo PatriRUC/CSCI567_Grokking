@@ -134,6 +134,7 @@ def plot_fig3d(figdir, models, x, train, test, norm, budget, wd):
 def plot_fig3e(figdir, models, per_seed, x, test, budget, wd):
     fig, ax = plt.subplots(figsize=(6.8, 4.6), layout='constrained')
     means, label_dot, label_tri = [], 'reached 60%% test acc in %d steps' % budget, "didn't reach 60%% test acc in %d steps" % budget
+    line = []  # (N, y, censored): mean where all seeds reached, budget where none did
     for n, _ in models:
         vals = [r['steps_to_test_60'] for r in per_seed if r['n'] == n]
         got = [v for v in vals if v != '']
@@ -141,8 +142,12 @@ def plot_fig3e(figdir, models, per_seed, x, test, budget, wd):
         if len(got) < len(vals):
             ax.plot([n]*(len(vals)-len(got)), [budget]*(len(vals)-len(got)), '^', color='tab:red', alpha=.5, ms=6, label=label_tri); label_tri = None
             ax.annotate('%d/%d seeds' % (len(vals)-len(got), len(vals)), (n, budget), textcoords='offset points', xytext=(7, -3), fontsize=7, color='tab:red')
-        if len(got) == len(vals): means.append((n, np.mean(got)))
+        if len(got) == len(vals): means.append((n, np.mean(got))); line.append((n, np.mean(got), False))
+        elif not got: line.append((n, budget, True))
     if means: ax.plot(*zip(*means), '-', color='tab:blue', lw=1.6, label='mean (all 3 seeds reached)')
+    # Dashed links to the budget: no seed reached there, so the true time is only bounded below.
+    for (n0, y0, c0), (n1, y1, c1) in zip(line, line[1:]):
+        if c0 or c1: ax.plot([n0, n1], [y0, y1], '--', color='tab:blue', lw=1.2)
     ax.set_yscale('log'); ax.set_xlabel('Train points N'); ax.set_ylabel('Steps to test accuracy > 60%')
     ax.set_title('Figure 3e reproduction | alpha=8, gamma=%g | seeds 0, 1, 2' % wd, fontsize=10); ax.legend(fontsize=8)
     save(fig, figdir, 'figure3e_seeds012')
