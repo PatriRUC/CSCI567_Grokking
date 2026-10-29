@@ -1,0 +1,32 @@
+{
+  "complete": true,
+  "experiment": "fig3e",
+  "seed": 2,
+  "models": 9,
+  "evaluation_points": 1181,
+  "steps": 100000,
+  "weight_decay": 0.005,
+  "validation_passed": true,
+  "validation_max_parameter_abs_error": 1.1102230246251565e-16,
+  "all_values_finite": true,
+  "fit_step_matches_run_record": true,
+  "fit_steps": {
+    "N128_alpha8": 250,
+    "N256_alpha8": 550,
+    "N512_alpha8": 1000,
+    "N1024_alpha8": 2100,
+    "N2048_alpha8": 4700,
+    "N4096_alpha8": 9900,
+    "N8192_alpha8": 13600,
+    "N16384_alpha8": 17200,
+    "N32768_alpha8": 19000
+  },
+  "training_wall_seconds": 1435.2080302000977,
+  "checkpoint_files": 18,
+  "total_checkpoint_bytes": 87321050,
+  "history_bytes": 18100356,
+  "training_code_sha256": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4",
+  "curve_export": "curves.csv: scheduled full-split metrics; norms at the same steps (per-step norms only in history.npz)",
+  "loss_units": "Reported loss is squared error summed over 10 outputs, averaged over samples; 10x element-mean MSE.",
+  "no_confidence_intervals": "One seed only; no cross-seed uncertainty estimated."
+}

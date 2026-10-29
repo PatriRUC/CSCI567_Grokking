@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "real_windows_sharing_lock": true,
-  "retries": 3,
-  "elapsed_seconds": 0.35684569997829385,
-  "retry_limit": 8,
-  "maximum_backoff_seconds": 0.5,
-  "training_sha256": "f5c37991aabeb0e7880a0d3c962ac5703069ac45980b4c5ad787123fa404feaa"
-}

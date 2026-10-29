@@ -1,141 +1,148 @@
-"""Plot only measured local dynamics; missing thresholds remain censored."""
+"""Single-seed QA, portable curve export and Fig.3d/3e plots for one run_dynamics.py root."""
 import argparse
 import csv
+import hashlib
 import json
 from pathlib import Path
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
 
-ROOT=Path(__file__).resolve().parents[1]
-
-
-def read(path):
-    with path.open(encoding='utf-8',newline='') as f:return list(csv.DictReader(f))
+THRESHOLDS = [0.5, 0.6, 0.7, 0.8, 0.9]
+CURVE_FIELDS = ['seed', 'n', 'alpha', 'step', 'train_accuracy', 'test_accuracy', 'train_loss', 'test_loss',
+                'global_norm', 'norm_layer1', 'norm_layer2', 'norm_layer3']
+TRAINING_CODE = Path(__file__).resolve().parent / 'run_dynamics.py'
 
 
-def main():
-    p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--input',type=Path,default=ROOT/'results')
-    p.add_argument('--output',type=Path,default=ROOT/'figures')
-    a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
-    rows=read(a.input/'metrics.csv');runs=read(a.input/'runs.csv');summary=read(a.input/'summary.csv')
-    qa=json.loads((a.input/'qa.json').read_text())
-    tag='' if qa['complete'] else ' | PARTIAL'
-    plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False,'pdf.fonttype':42})
-    def save(fig,name):
-        for ext in ('png','pdf'):fig.savefig(a.output/f'{name}.{ext}',dpi=180,bbox_inches='tight')
-        plt.close(fig)
-    def trace(run_id):
-        r=[r for r in rows if r['run_id']==run_id and r.get('test_accuracy','')!='']
-        return {key:np.array([float(x[key]) for x in r]) for key in ['step','train_accuracy','test_accuracy','train_mse_element_mean','test_mse_element_mean','global_norm','layer1_norm','layer2_norm','layer3_norm']}
-    alphas=sorted(set(float(r['alpha']) for r in runs if r['phase']=='fig3d'))
-    colors=plt.cm.viridis(np.linspace(.05,.9,max(1,len(alphas))))
-    fig,ax=plt.subplots(figsize=(10,5.5),constrained_layout=True)
-    legend=[]
-    for alpha,color in zip(alphas,colors):
-        group=[r for r in runs if r['phase']=='fig3d' and float(r['alpha'])==alpha]
-        ts=[trace(r['run_id']) for r in group]
-        assert all(np.array_equal(t['step'],ts[0]['step']) for t in ts)
-        x=ts[0]['step'];mask=x>0
-        for metric,style in [('train_accuracy','--'),('test_accuracy','-')]:
-            y=np.array([t[metric] for t in ts])
-            mean=y.mean(0);sd=y.std(0,ddof=1) if len(y)>1 else np.zeros_like(mean)
-            ax.plot(x[mask],mean[mask],style,color=color,lw=1.6)
-            if len(y)>1:ax.fill_between(x[mask],np.clip((mean-sd)[mask],0,1),np.clip((mean+sd)[mask],0,1),color=color,alpha=.08)
-        legend.append(Line2D([0],[0],color=color,label=f'alpha={alpha:g} (n={len(ts)})'))
-    legend += [Line2D([0],[0],ls='--',color='black',label='Train'),Line2D([0],[0],ls='-',color='black',label='Test')]
-    ax.set(xscale='log',xlim=(1,100000),ylim=(-.02,1.02),xlabel='Optimizer updates',ylabel='Accuracy',
-           title='Figure 3d reproduction | MNIST N=1,000 | AdamW wd=1e-4'+tag)
-    ax.grid(alpha=.18);ax.legend(handles=legend,fontsize=8,ncol=2,loc='lower right')
-    fig.text(.5,-.025,'FP64 | mean ± sample SD across available seeds | project initialization grid',ha='center',fontsize=9)
-    save(fig,'figure3d')
-    fig,axes=plt.subplots(2,3,figsize=(13,7),sharex=True,sharey=True,constrained_layout=True)
-    for ax,alpha in zip(axes.flat,alphas):
-        for run in [r for r in runs if r['phase']=='fig3d' and float(r['alpha'])==alpha]:
-            t=trace(run['run_id']);mask=t['step']>0
-            ax.plot(t['step'][mask],t['train_accuracy'][mask],'--',color='#1464a0',alpha=.65,lw=.8)
-            ax.plot(t['step'][mask],t['test_accuracy'][mask],color='#dc6500',alpha=.65,lw=1)
-        ax.set(xscale='log',title=f'alpha={alpha:g}',xlabel='Updates',ylabel='Accuracy',ylim=(-.02,1.02));ax.grid(alpha=.15)
-    fig.suptitle('Figure 3d | individual seeds | blue dashed: train; orange: test'+tag)
-    save(fig,'figure3d_by_seed')
-    fig,axes=plt.subplots(2,3,figsize=(13,7),constrained_layout=True)
-    diagnostic_metrics=[('train_mse_element_mean','Train MSE'),('test_mse_element_mean','Test MSE'),
-                        ('global_norm','Global norm'),('layer1_norm','Layer 1 norm'),
-                        ('layer2_norm','Layer 2 norm'),('layer3_norm','Layer 3 norm')]
-    for alpha,color in zip(alphas,colors):
-        ts=[trace(r['run_id']) for r in runs if r['phase']=='fig3d' and float(r['alpha'])==alpha]
-        for ax,(metric,label) in zip(axes.flat,diagnostic_metrics):
-            x=ts[0]['step'];mask=x>0
-            y=np.array([t[metric] for t in ts]).mean(0)
-            ax.plot(x[mask],y[mask],color=color,lw=1.2)
-    for ax,(metric,label) in zip(axes.flat,diagnostic_metrics):
-        ax.set(xscale='log',xlim=(1,100000),title=label,xlabel='Optimizer updates',
-               ylabel='Element-mean MSE' if 'mse' in metric else 'L2 parameter norm')
-        if 'mse' in metric:ax.set_yscale('log')
-        ax.grid(alpha=.15)
-    fig.suptitle('Figure 3d diagnostics | N=1,000 | wd=1e-4'+tag)
-    fig.legend(handles=[Line2D([0],[0],color=c,label=f'alpha={a:g}') for a,c in zip(alphas,colors)],
-               ncol=6,loc='upper center',bbox_to_anchor=(.5,-.015),frameon=False)
-    fig.text(.5,-.08,'Means across available seeds at measured evaluation steps | norms include weights and biases',ha='center',fontsize=9)
-    save(fig,'figure3d_diagnostics')
-    fig,ax=plt.subplots(figsize=(9,5.2),constrained_layout=True)
-    e=[r for r in runs if r['phase']=='fig3e']
-    seedcolors=['#1f77b4','#ee8a24','#279a68']
-    for seed in (0,1,2):
-        for run in [r for r in e if int(r['seed'])==seed and r.get('scope_role','primary')=='primary']:
-            n=int(run['n'])
-            if run['event_observed']=='True':
-                t=float(run['t60'])
-                if t>0:ax.scatter(n,t,color=seedcolors[seed],s=35,alpha=.75,zorder=3)
-                else:ax.annotate(f'N={n}: t=0',(n,100),fontsize=7)
-            else:ax.scatter(n,100000,marker='^',s=65,facecolors='none',edgecolors=seedcolors[seed],zorder=4)
-    supplemental=[r for r in e if r.get('scope_role','primary')!='primary']
-    for run in supplemental:
-        if run['event_observed']=='True':ax.scatter(int(run['n']),float(run['t60']),marker='D',color='#666666',s=45,zorder=4)
-    means=[r for r in summary if r['phase']=='fig3e' and r['mean_t60']!='']
-    # Do not bridge N values where the mean is unavailable due to censoring.
-    e_summary=sorted([r for r in summary if r['phase']=='fig3e'],key=lambda r:int(r['n']))
-    if e_summary:
-        ax.plot([int(r['n']) for r in e_summary],[float(r['mean_t60']) if r['mean_t60'] else np.nan for r in e_summary],color='black',lw=1,label='Mean (all 3 seeds reached)')
-    if means:
-        ax.errorbar([int(r['n']) for r in means],[float(r['mean_t60']) for r in means],
-                    yerr=[float(r['sample_sd_t60']) for r in means],fmt='none',ecolor='black',capsize=3,lw=.8,zorder=2)
-    for row in e_summary:
-        if int(row['censored']):ax.annotate(f"{row['reached']}/{row['planned_seeds']} reached",(int(row['n']),100000),xytext=(10,10),textcoords='offset points',fontsize=8)
-    reduced=qa.get('cancelled_by_user',0)>0
-    ax.set(yscale='log',ylim=(100,220000),xlabel='Training samples N',ylabel='First observed update with test accuracy > 60%',
-           title=('Figure 3e | user-retained sample range\n' if reduced else 'Figure 3e reproduction | ')+ 'alpha=8 (project choice) | wd=5e-3'+tag)
-    ax.grid(alpha=.18)
-    handles=[Line2D([0],[0],marker='o',ls='',color=c,label=f'Seed {s}') for s,c in enumerate(seedcolors)]
-    handles += [Line2D([0],[0],marker='^',mfc='none',ls='',color='black',label='Not reached by 100,000'),Line2D([0],[0],color='black',label='Mean: all 3 reached')]
-    if supplemental:handles.append(Line2D([0],[0],marker='D',ls='',color='#666666',label='N=8,000: seed 0 only (supplement)'))
-    ax.legend(handles=handles,fontsize=8,loc='lower right')
-    footer='N=200-4,000: 3 seeds each | N=8,000: seed 0 only | Whiskers: sample SD' if reduced else 'Whiskers: sample SD | counts in results/summary.csv | censored runs excluded from ordinary means'
-    fig.text(.5,-.025,footer,ha='center',fontsize=9)
-    save(fig,'figure3e')
-    reference='fig3d_n1000_a8_s0'
-    if any(r['run_id']==reference for r in runs):
-        refrow=next(r for r in runs if r['run_id']==reference)
-        t=trace(reference);mask=t['step']>0
-        norm=np.load(ROOT/'runs'/reference/'norms.npy',mmap_mode='r');steps=np.arange(len(norm))
-        fig,axes=plt.subplots(1,3,figsize=(15,4.3),constrained_layout=True)
-        for metric,color in [('train_accuracy','#1464a0'),('test_accuracy','#dc6500')]:axes[0].plot(t['step'][mask],t[metric][mask],color=color,label=metric.split('_')[0])
-        for metric,color in [('train_mse_element_mean','#1464a0'),('test_mse_element_mean','#dc6500')]:axes[1].plot(t['step'][mask],t[metric][mask],color=color,label=metric.split('_')[0])
-        norm_indices=np.unique(np.r_[np.arange(1,len(norm),100),len(norm)-1])
-        for i,name in enumerate(['Global','Layer 1','Layer 2','Layer 3']):axes[2].plot(steps[norm_indices],norm[norm_indices,i],label=name,lw=1)
-        for ax in axes:
-            ax.set_xscale('log');ax.set_xlabel('Optimizer updates');ax.grid(alpha=.15)
-            if refrow['fit_step']:ax.axvline(float(refrow['fit_step']),color='#777777',ls=':',lw=.8)
-            if refrow['t60']:ax.axvline(float(refrow['t60']),color='#4b8541',ls=':',lw=.8)
-            ax.legend(fontsize=8)
-        axes[0].set_ylabel('Accuracy');axes[1].set(yscale='log',ylabel='Element-mean MSE');axes[2].set_ylabel('L2 parameter norm')
-        fig.suptitle('Reference | N=1,000, alpha=8, wd=1e-4, seed=0'+tag)
-        fig.text(.5,-.025,f"Vertical guides: training fit = {refrow['fit_step']} (gray); first test > 60% = {refrow['t60']} (green)",ha='center',fontsize=9)
-        save(fig,'reference_diagnostics')
-    print('Figures written:',a.output)
+def first_reach(steps, values, threshold):
+    hit = np.nonzero(values >= threshold)[0]
+    return int(steps[hit[0]]) if len(hit) else None
 
 
-if __name__=='__main__':main()
+def main(root):
+    config = json.loads((root/'config.json').read_text(encoding='utf-8'))
+    seed = int(config['seed'])
+    status = json.loads((root/'status.json').read_text(encoding='utf-8'))
+    validation = json.loads((root/'validation.json').read_text(encoding='utf-8'))
+    if status['state'] != 'complete': raise RuntimeError('Training is not complete; figures cannot be marked final.')
+    if not validation['passed']: raise RuntimeError('Validation did not pass.')
+    h = np.load(root/'history.npz')
+    models = [(int(n), float(a)) for n, a in h['models']]
+    if models != [tuple(m) for m in config['models']]: raise RuntimeError('History models differ from config.')
+    steps, metrics = h['eval_steps'], h['metrics']
+    layer_norms = np.sqrt(h['layer_norms_squared'])  # (steps+1, models, 3)
+    norms = np.sqrt(h['layer_norms_squared'].sum(-1))
+    budget = config['steps']
+    if layer_norms.shape[0] != budget+1 or steps[0] != 0 or steps[-1] != budget: raise RuntimeError('Incomplete history.')
+    if not (np.isfinite(metrics).all() and np.isfinite(layer_norms).all()): raise RuntimeError('Non-finite history values.')
+    if not ((metrics[..., :2] >= 0).all() and (metrics[..., :2] <= 1).all()): raise RuntimeError('Accuracy outside [0, 1].')
+    fit = [first_reach(steps, metrics[:, j, 0], 0.99) for j in range(len(models))]
+    if [(-1 if f is None else f) for f in fit] != h['fit_step'].tolist(): raise RuntimeError('Fit steps disagree with run record.')
+    checkpoints = sorted((root/'checkpoints').glob('*.pt'))
+    if len(checkpoints) != len(models) + sum(f is not None for f in fit): raise RuntimeError('Missing fit/final checkpoints.')
+
+    with (root/'curves.csv').open('w', newline='', encoding='utf-8') as handle:
+        writer = csv.writer(handle); writer.writerow(CURVE_FIELDS)
+        for j, (n, alpha) in enumerate(models):
+            for e, step in enumerate(steps):
+                writer.writerow([seed, n, '%g' % alpha, int(step)] + ['%.12g' % v for v in metrics[e, j]]
+                                + ['%.12g' % norms[step, j]] + ['%.12g' % v for v in layer_norms[step, j]])
+    rows = []
+    for j, (n, alpha) in enumerate(models):
+        row = dict(seed=seed, n=n, alpha=alpha, fit_step='' if fit[j] is None else fit[j],
+                   final_train_accuracy=float(metrics[-1, j, 0]), final_test_accuracy=float(metrics[-1, j, 1]),
+                   max_test_accuracy=float(metrics[:, j, 1].max()), initial_norm=float(norms[0, j]), final_norm=float(norms[-1, j]))
+        for t in THRESHOLDS:
+            s = first_reach(steps, metrics[:, j, 1], t)
+            row['steps_to_test_%d' % round(100*t)] = '' if s is None else s  # empty: not reached within budget
+        rows.append(row)
+    with (root/'time_to_generalize.csv').open('w', newline='', encoding='utf-8') as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+
+    figs = root/'figures'; figs.mkdir(exist_ok=True)
+    plt.rcParams.update({'font.size': 10, 'pdf.fonttype': 42, 'ps.fonttype': 42})
+    experiment = config.get('experiment', 'notebook')  # pre-refactor notebook configs have no key
+    x = np.maximum(steps, 1)
+    if experiment == 'fig3d': plot_fig3d(figs, seed, models, x, metrics, budget, config['weight_decay'])
+    elif experiment == 'fig3e': plot_fig3e(figs, seed, models, rows, budget, config['weight_decay'])
+    else: plot_notebook(figs, seed, models, x, metrics, norms, rows, budget)
+
+    qa = dict(complete=True, experiment=experiment, seed=seed, models=len(models), evaluation_points=len(steps), steps=budget,
+              weight_decay=config['weight_decay'],
+              validation_passed=True, validation_max_parameter_abs_error=max(c['max_parameter_abs_error'] for c in validation['serial_comparisons']),
+              all_values_finite=True, fit_step_matches_run_record=True,
+              fit_steps={'N%d_alpha%g' % m: fit[j] for j, m in enumerate(models)},
+              training_wall_seconds=status['elapsed_seconds'], checkpoint_files=len(checkpoints),
+              total_checkpoint_bytes=sum(p.stat().st_size for p in checkpoints),
+              history_bytes=(root/'history.npz').stat().st_size,
+              training_code_sha256=hashlib.sha256(TRAINING_CODE.read_bytes()).hexdigest(),
+              curve_export='curves.csv: scheduled full-split metrics; norms at the same steps (per-step norms only in history.npz)',
+              loss_units='Reported loss is squared error summed over 10 outputs, averaged over samples; 10x element-mean MSE.',
+              no_confidence_intervals='One seed only; no cross-seed uncertainty estimated.')
+    (root/'qa_report.json').write_text(json.dumps(qa, indent=2), encoding='utf-8')
+    print(json.dumps(qa), flush=True)
+
+
+def plot_fig3d(figs, seed, models, x, metrics, budget, wd):
+    alphas = [a for _, a in models]
+    norm = matplotlib.colors.Normalize(min(alphas), max(alphas))
+    fig, ax = plt.subplots(figsize=(6.8, 4.4), layout='constrained')
+    for j, a in enumerate(alphas):
+        ax.plot(x, metrics[:, j, 0], color=plt.cm.Reds(.25 + .75*norm(a)), lw=1)
+        ax.plot(x, metrics[:, j, 1], color=plt.cm.Greens(.25 + .75*norm(a)), lw=1)
+    ax.plot([], [], color='tab:red', label='train'); ax.plot([], [], color='tab:green', label='test')
+    ax.set_xscale('log'); ax.set_xlim(1, budget); ax.set_ylim(0, 1.02); ax.legend(loc='lower right')
+    ax.set_xlabel('Optimization steps'); ax.set_ylabel('Accuracy (full split)')
+    fig.colorbar(plt.cm.ScalarMappable(norm, 'Greens'), ax=ax, label='Initialization scale alpha')
+    ax.set_title('Figure 3d reproduction | N=1000, gamma=%g | seed %d' % (wd, seed))
+    for ext in ('png', 'pdf'): fig.savefig(figs/('figure3d_seed%d.%s' % (seed, ext)), dpi=180, bbox_inches='tight')
+    plt.close(fig)
+
+
+def plot_fig3e(figs, seed, models, rows, budget, wd):
+    pts = [(n, r['steps_to_test_60']) for (n, _), r in zip(models, rows)]
+    fig, ax = plt.subplots(figsize=(6.4, 4.4), layout='constrained')
+    reached = [(n, s) for n, s in pts if s != '']
+    if reached: ax.plot(*zip(*reached), '-o', color='tab:blue', ms=4, label='reached 60% test acc')
+    missed = [n for n, s in pts if s == '']
+    if missed: ax.plot(missed, [budget]*len(missed), '^', color='tab:red', alpha=.6, label='not reached in %d steps' % budget)
+    ax.set_yscale('log'); ax.set_xlabel('Training set size N'); ax.set_ylabel('Steps to test accuracy >= 60%')
+    ax.set_title('Figure 3e reproduction | alpha=8, gamma=%g | seed %d' % (wd, seed)); ax.legend(fontsize=8)
+    for ext in ('png', 'pdf'): fig.savefig(figs/('figure3e_seed%d.%s' % (seed, ext)), dpi=180, bbox_inches='tight')
+    plt.close(fig)
+
+
+def plot_notebook(figs, seed, models, x, metrics, norms, rows, budget):
+    main_j, ctrl_j = models.index((1000, 8.0)), models.index((1000, 1.0))
+    fig, ax = plt.subplots(figsize=(6.4, 4.4), layout='constrained')
+    ax.plot(x, metrics[:, main_j, 0], color='red', label='train (alpha=8)')
+    ax.plot(x, metrics[:, main_j, 1], color='green', label='test (alpha=8)')
+    ax.plot(x, metrics[:, ctrl_j, 0], color='red', ls=':', alpha=.6, label='train (alpha=1 control)')
+    ax.plot(x, metrics[:, ctrl_j, 1], color='green', ls=':', alpha=.6, label='test (alpha=1 control)')
+    ax.set_xscale('log'); ax.set_xlim(1, budget); ax.set_ylim(0, 1.02)
+    ax.set_xlabel('Optimization steps'); ax.set_ylabel('Accuracy (full split)'); ax.legend(loc='center left', fontsize=8)
+    ax2 = ax.twinx(); ax2.plot(np.arange(1, budget+1), norms[1:, main_j], color='purple'); ax2.set_ylabel('Weight norm (alpha=8)', color='purple')
+    ax.set_title('Official notebook setting | N=1000, gamma=0.01 | seed %d' % seed)
+    for ext in ('png', 'pdf'): fig.savefig(figs/('notebook_grokking_curve_seed%d.%s' % (seed, ext)), dpi=180, bbox_inches='tight')
+    plt.close(fig)
+
+    grok = [(j, n) for j, (n, a) in enumerate(models) if a == 8.0]
+    fig, ax = plt.subplots(figsize=(6.4, 4.4), layout='constrained')
+    for k, (t, color) in enumerate(zip(THRESHOLDS, plt.cm.viridis(np.linspace(0, .9, len(THRESHOLDS))))):
+        key = 'steps_to_test_%d' % round(100*t)
+        pts = [(n, rows[j][key]) for j, n in grok]
+        reached = [(n, s) for n, s in pts if s != '']
+        if reached: ax.plot(*zip(*reached), '-o', color=color, ms=4, label='test acc >= %.0f%%' % (100*t))
+        missed = [n for n, s in pts if s == '']
+        if missed: ax.plot(missed, [budget*1.15*1.12**k]*len(missed), 'v', mfc='none', color=color, ms=6)
+    ax.axhline(budget, color='gray', lw=.7, ls='--')
+    ax.set_xscale('log'); ax.set_yscale('log'); ax.set_xlabel('Training set size N'); ax.set_ylabel('Steps to reach threshold')
+    ax.set_title('Official notebook setting | alpha=8, gamma=0.01 | seed %d\ntriangles: not reached by %d steps' % (seed, budget), fontsize=10)
+    ax.legend(fontsize=8, loc='lower left')
+    for ext in ('png', 'pdf'): fig.savefig(figs/('notebook_time_to_generalize_seed%d.%s' % (seed, ext)), dpi=180, bbox_inches='tight')
+    plt.close(fig)
+
+
+if __name__ == '__main__':
+    p = argparse.ArgumentParser(description=__doc__); p.add_argument('--root', type=Path, required=True); main(p.parse_args().root)

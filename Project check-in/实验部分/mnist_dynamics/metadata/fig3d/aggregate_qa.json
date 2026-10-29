@@ -1,0 +1,61 @@
+{
+  "experiment": "fig3d",
+  "figure_source": "paper Fig.3d title: \"MNIST Grokking With Varying alpha, 1000 Train Points, gamma=1e-4\"; colour bar alpha 1-10",
+  "weight_decay": 0.0001,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "models": 10,
+  "evaluation_points": 1181,
+  "total_curve_rows": 35430,
+  "same_config_except_seed": true,
+  "all_numeric_fields_finite": true,
+  "steps": 100000,
+  "fit_definition": "first scheduled step with full train accuracy >= 0.99",
+  "threshold_definition": "first scheduled step with full test accuracy >= threshold; empty if not reached within budget",
+  "standard_deviation_definition": "sample SD, ddof=1, across seeds; reported only when all seeds reached; not confidence interval",
+  "steps_to_test_60_mean": {
+    "N1000_alpha1": 3.6666666666666665,
+    "N1000_alpha2": 6.0,
+    "N1000_alpha3": 24.333333333333332,
+    "N1000_alpha4": 150.0,
+    "N1000_alpha5": 9533.333333333334,
+    "N1000_alpha6": 17066.666666666668,
+    "N1000_alpha7": 25200.0,
+    "N1000_alpha8": 35366.666666666664,
+    "N1000_alpha9": 46166.666666666664,
+    "N1000_alpha10": 59666.666666666664
+  },
+  "thresholds_not_reached": {
+    "N1000_alpha1": {},
+    "N1000_alpha2": {},
+    "N1000_alpha3": {
+      "0.9": 2
+    },
+    "N1000_alpha4": {
+      "0.9": 3
+    },
+    "N1000_alpha5": {
+      "0.9": 3
+    },
+    "N1000_alpha6": {
+      "0.9": 3
+    },
+    "N1000_alpha7": {
+      "0.9": 3
+    },
+    "N1000_alpha8": {
+      "0.9": 3
+    },
+    "N1000_alpha9": {
+      "0.8": 1,
+      "0.9": 3
+    },
+    "N1000_alpha10": {
+      "0.8": 2,
+      "0.9": 3
+    }
+  }
+}

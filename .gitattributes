@@ -1,2 +1,3 @@
 # Preserve exact bytes for provenance hashes across platforms.
 "Project check-in/实验部分/mnist_landscape/**" -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+"Project check-in/实验部分/mnist_dynamics/**" -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

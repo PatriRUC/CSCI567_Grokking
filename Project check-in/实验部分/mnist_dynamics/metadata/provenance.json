@@ -1,56 +1,46 @@
 {
+  "paper": "Omnigrok: Grokking Beyond Algorithmic Data (Liu, Michaud, Tegmark, ICLR 2023)",
+  "paper_source_checked": "OMNIGROK GROKKING BEYOND ALGORITHMIC.pdf (ICLR 2023 camera-ready), Figure 3 on page 5, Appendix A/C; matches arXiv 2210.01117v2 figure SVGs",
   "official_repository": "https://github.com/KindXiaoming/Omnigrok",
   "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
-  "official_file": "mnist/grokking/mnist-grokking.ipynb",
-  "official_sha256": "e930648fda27ad67f6d31a7039deccf7a70e89ca659369da328124797aa67b0f",
-  "team_base_commit": "ed040b7fa7ebbc95b928bb990829bed266ffcb6f",
-  "execution": "local Windows RTX 4060 Laptop",
-  "protocol_level": "qualitative reproduction with disclosed project choices",
-  "known": {
-    "fig3d_n": 1000,
-    "fig3d_weight_decay": 0.0001,
-    "fig3e_weight_decay": 0.005,
-    "budget": 100000
-  },
-  "project_choices": {
-    "fig3d_alphas": [
-      1,
-      2,
-      4,
-      6,
-      8,
-      10
-    ],
-    "fig3e_alpha": 8,
-    "fig3e_ns": [
-      200,
-      500,
-      1000,
-      2000,
-      4000,
-      8000,
-      16000,
-      30000
-    ],
-    "seeds": [
-      0,
-      1,
-      2
-    ],
-    "subset": "first N",
-    "test_threshold": "strict > .60"
-  },
-  "deviations": [
-    "explicit seeds and paired initializations/batches",
-    "independent training RNG",
-    "full deterministic evaluation with all tail samples",
-    "final-step evaluation",
-    "per-step global and layer norms",
-    "training-only fitting criterion and resumable checkpoints"
+  "official_files": [
+    "mnist/grokking/mnist-grokking.ipynb"
   ],
-  "original_unknown": [
-    "exact figure 3d alpha grid",
-    "figure 3e initialization scale",
-    "figure 3e N grid, evaluation interval, original seeds and censoring mean rule"
-  ]
+  "implementation": "Independent reproduction of the official notebook training loop (model, init scaling, MSE, AdamW, batch 200, float64), not unmodified upstream code; batched independent models are validated against the serial official loop for 50 steps before every training run.",
+  "scope": "MNIST grokking dynamics, Figure 3d-e",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "environment_identical_across_seeds": true,
+  "environment_note": "metadata/environment.json; all six per-seed environment records are identical except timestamps.",
+  "validation_note": "metadata/<experiment>/validation.json is seed 0's pre-training validation; seeds 1 and 2 passed the same validation with records identical except timestamps.",
+  "experiments": {
+    "fig3d": {
+      "figure_source": "paper Fig.3d title: MNIST Grokking With Varying alpha, 1000 Train Points, gamma=1e-4; colour bar alpha 1..10",
+      "settings_from_paper": "N=1000, weight decay 1e-4, alpha=1..10 integers (colour bar), batch 200 (Appendix A), 1e5 steps (x-axis)",
+      "settings_assumed": "first 1000 training images as in the official notebook (paper text says random subset); integer alpha grid read from the colour bar",
+      "models_per_seed": 10,
+      "training_code_sha256": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4",
+      "per_seed_training_seconds": [
+        1511.2456876999931,
+        1529.0587330000708,
+        1454.690256199916
+      ]
+    },
+    "fig3e": {
+      "figure_source": "paper Fig.3e: Steps until generalization for MNIST (weight decay ~5e-3); y-axis Steps to Test Accuracy > 60%; runs not reaching 60% in 1e5 steps drawn as triangles",
+      "settings_from_paper": "weight decay 5e-3, 60% test accuracy threshold, 1e5 step budget, batch 200 (Appendix A)",
+      "settings_read_from_figure": "N = 128*2^k, k=0..8 (128..32768), from SVG marker x-coordinates; about 3 runs per N",
+      "settings_assumed": "alpha=8 (not stated in the paper; official notebook default); first N training images (paper text says random subset)",
+      "models_per_seed": 9,
+      "training_code_sha256": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4",
+      "per_seed_training_seconds": [
+        1516.674810800003,
+        1450.1452686999692,
+        1435.2080302000977
+      ]
+    }
+  }
 }
