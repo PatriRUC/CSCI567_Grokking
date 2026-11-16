@@ -1,0 +1,5 @@
+# Tested: Windows 11, Python 3.13, NVIDIA CUDA 12.8 wheels (RTX 5060, sm_120).
+--extra-index-url https://download.pytorch.org/whl/cu128
+-r requirements-analysis.txt
+torch==2.8.0+cu128
+torchvision==0.23.0+cu128

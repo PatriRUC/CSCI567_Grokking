@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "experiment": "notebook",
+  "weight_decay": 0.01,
+  "configs": [
+    [
+      100,
+      8.0
+    ],
+    [
+      500,
+      8.0
+    ],
+    [
+      1000,
+      8.0
+    ],
+    [
+      1000,
+      1.0
+    ]
+  ],
+  "steps": 50,
+  "image_conversion_exact_match": true,
+  "serial_comparisons": [
+    {
+      "step": 1,
+      "max_parameter_abs_error": 1.715294573045867e-14
+    },
+    {
+      "step": 10,
+      "max_parameter_abs_error": 1.715294573045867e-14
+    },
+    {
+      "step": 50,
+      "max_parameter_abs_error": 1.7263968032921184e-14
+    }
+  ],
+  "max_metric_abs_error": 1.4210854715202004e-14,
+  "tolerance": 1e-09,
+  "environment": {
+    "timestamp": "2026-11-16T09:16:58.739441+00:00",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "platform": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "numpy": "2.5.5",
+    "cuda": "13.2",
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "gpu_memory_bytes": 42405855232,
+    "dtype": "torch.float64",
+    "tf32": false
+  }
+}

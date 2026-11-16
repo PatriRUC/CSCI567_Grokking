@@ -1,0 +1,36 @@
+{
+  "purpose": "short c=1 replay run executed before the full run",
+  "seed": 2,
+  "cs": [
+    1.0
+  ],
+  "steps_after_fork": 2000,
+  "fork_step": 1900,
+  "replay_control": {
+    "group": "c=1",
+    "window_steps": 1000,
+    "max_relative_distance_in_window": 2.593877180030196e-11,
+    "max_relative_distance_full_run": 2.262097740948142e-10,
+    "max_norm_relative_error": 4.6618923979196e-16,
+    "max_abs_metric_difference_full_run": {
+      "train_acc": 0.0,
+      "val_acc": 0.0,
+      "test_acc": 0.0,
+      "train_loss": 1.8714370331185393e-13,
+      "val_loss": 1.900346546790388e-10,
+      "test_loss": 2.0376234033392393e-10
+    },
+    "passed": true
+  },
+  "resume_check": {
+    "steps": 200,
+    "max_parameter_abs_error": 7.882583474838611e-15,
+    "passed": true
+  },
+  "norms_matched": true,
+  "passed": true,
+  "code_sha256": {
+    "run_direction.py": "1cfebf99b148e3585cc933072abecc9a826e49d4089772c0c8c021846394ef84",
+    "run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4"
+  }
+}

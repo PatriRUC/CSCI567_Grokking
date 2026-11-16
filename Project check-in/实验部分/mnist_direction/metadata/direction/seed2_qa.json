@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "experiment": "direction",
+  "seed": 2,
+  "groups": [
+    "ref",
+    "c=1",
+    "c=2",
+    "c=0.5"
+  ],
+  "evaluation_points": 1181,
+  "steps_after_fork": 100000,
+  "fork_step": 1900,
+  "weight_decay": 0.01,
+  "interpretable": true,
+  "resume_check": {
+    "steps": 200,
+    "max_parameter_abs_error": 7.882583474838611e-15,
+    "passed": true
+  },
+  "replay_control": {
+    "group": "c=1",
+    "window_steps": 1000,
+    "max_relative_distance_in_window": 2.7391462854035748e-11,
+    "max_relative_distance_full_run": 0.6113089551218902,
+    "max_norm_relative_error": 6.250189626512913e-16,
+    "max_abs_metric_difference_full_run": {
+      "train_acc": 0.0010000000000000009,
+      "val_acc": 0.010899999999999993,
+      "test_acc": 0.009199999999999986,
+      "train_loss": 0.051486382335119804,
+      "val_loss": 0.37891016702892344,
+      "test_loss": 0.38692234401097636
+    },
+    "passed": true
+  },
+  "norms_matched": true,
+  "max_norm_relative_error": {
+    "ref": 0.0,
+    "c=1": 6.250189626512913e-16,
+    "c=2": 6.316396047474451e-16,
+    "c=0.5": 6.440709962075524e-16
+  },
+  "all_metrics_finite": true,
+  "all_per_step_finite": true,
+  "first_non_finite_step": {
+    "ref": null,
+    "c=1": null,
+    "c=2": null,
+    "c=0.5": null
+  },
+  "training_wall_seconds_after_fork": 323.0850138990004,
+  "steps_per_second": 309.5160583067496,
+  "history_bytes": 25925341,
+  "code_sha256": {
+    "run_direction.py": "1cfebf99b148e3585cc933072abecc9a826e49d4089772c0c8c021846394ef84",
+    "run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4"
+  },
+  "curve_export": "all_seeds_curves.csv: scheduled full-split metrics with norms at the same steps; seed2_per_step.csv: every step",
+  "loss_units": "*_loss is squared error summed over 10 outputs, averaged over samples; train_mse = train_loss / 10 is the training objective.",
+  "cross_seed": "This file covers one seed; cross-seed statistics are in results/direction/summary_by_condition.csv."
+}

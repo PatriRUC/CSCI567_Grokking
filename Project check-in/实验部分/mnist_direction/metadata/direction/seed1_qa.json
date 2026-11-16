@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "experiment": "direction",
+  "seed": 1,
+  "groups": [
+    "ref",
+    "c=1",
+    "c=2",
+    "c=0.5"
+  ],
+  "evaluation_points": 1181,
+  "steps_after_fork": 100000,
+  "fork_step": 1700,
+  "weight_decay": 0.01,
+  "interpretable": true,
+  "resume_check": {
+    "steps": 200,
+    "max_parameter_abs_error": 4.869715741762093e-14,
+    "passed": true
+  },
+  "replay_control": {
+    "group": "c=1",
+    "window_steps": 1000,
+    "max_relative_distance_in_window": 1.6786092088555626e-14,
+    "max_relative_distance_full_run": 0.5598062553596083,
+    "max_norm_relative_error": 6.306317685912828e-16,
+    "max_abs_metric_difference_full_run": {
+      "train_acc": 0.0,
+      "val_acc": 0.00880000000000003,
+      "test_acc": 0.007099999999999995,
+      "train_loss": 0.03153604137513037,
+      "val_loss": 0.1841810691345973,
+      "test_loss": 0.18284391563520508
+    },
+    "passed": true
+  },
+  "norms_matched": true,
+  "max_norm_relative_error": {
+    "ref": 0.0,
+    "c=1": 6.306317685912828e-16,
+    "c=2": 5.340270462996704e-16,
+    "c=0.5": 6.394411718878902e-16
+  },
+  "all_metrics_finite": true,
+  "all_per_step_finite": true,
+  "first_non_finite_step": {
+    "ref": null,
+    "c=1": null,
+    "c=2": null,
+    "c=0.5": null
+  },
+  "training_wall_seconds_after_fork": 317.1612306799998,
+  "steps_per_second": 315.29704871430243,
+  "history_bytes": 25846273,
+  "code_sha256": {
+    "run_direction.py": "1cfebf99b148e3585cc933072abecc9a826e49d4089772c0c8c021846394ef84",
+    "run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4"
+  },
+  "curve_export": "all_seeds_curves.csv: scheduled full-split metrics with norms at the same steps; seed1_per_step.csv: every step",
+  "loss_units": "*_loss is squared error summed over 10 outputs, averaged over samples; train_mse = train_loss / 10 is the training objective.",
+  "cross_seed": "This file covers one seed; cross-seed statistics are in results/direction/summary_by_condition.csv."
+}

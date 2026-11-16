@@ -1,0 +1,34 @@
+{
+  "paper": "Omnigrok: Grokking Beyond Algorithmic Data (Liu, Michaud, Tegmark, ICLR 2023)",
+  "official_repository": "https://github.com/KindXiaoming/Omnigrok",
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281",
+  "official_files": [
+    "mnist/grokking/mnist-grokking.ipynb"
+  ],
+  "scope": "Alternative-hypothesis experiment: tangential-update multiplier c under a per-step shared global-norm trajectory; not a figure of the paper.",
+  "base_setting": "official notebook defaults: N=1000, alpha=8, weight decay=0.01, lr=0.001, batch 200, float64",
+  "implementation": "Model, sampler, AdamW step and data conversion imported from mnist_dynamics/code/run_dynamics.py; the intervention is applied to the parameters after each optimizer step.",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "groups": [
+    "ref",
+    "c=1",
+    "c=2",
+    "c=0.5"
+  ],
+  "code_sha256": {
+    "run_direction.py": "1cfebf99b148e3585cc933072abecc9a826e49d4089772c0c8c021846394ef84",
+    "run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4"
+  },
+  "training_seconds_after_fork_by_seed": {
+    "0": 321.435686198,
+    "1": 317.1612306799998,
+    "2": 323.0850138990004
+  },
+  "last_exported_seed": 2,
+  "environment_note": "metadata/environment.json and package_versions.json describe the run of the last exported seed.",
+  "not_published": "history.npz, checkpoints and logs stay in generated/ (not in Git)."
+}

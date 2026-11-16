@@ -1,0 +1,70 @@
+{
+  "seed": 1,
+  "n": 1000,
+  "alpha": 8.0,
+  "lr": 0.001,
+  "weight_decay": 0.01,
+  "batch_size": 200,
+  "groups": [
+    "ref",
+    "c=1",
+    "c=2",
+    "c=0.5"
+  ],
+  "cs": [
+    1.0,
+    2.0,
+    0.5
+  ],
+  "steps_after_fork": 100000,
+  "max_prefork_steps": 20000,
+  "fork_rule": "first scheduled evaluation with full train accuracy >= 0.99; test and validation data are not consulted",
+  "intervention": "theta* = theta_t + radial(Delta) + c * tangential(Delta), Delta = actual AdamW update; theta_{t+1} = R_{t+1} * theta* / ||theta*||, R_{t+1} = reference norm after the same step",
+  "parameter_vector": "all weights and biases, order w1 w2 w3 b1 b2 b3",
+  "adamw_state": "copied from the fork into every slice, then updated normally from each slice's own gradients",
+  "minibatches": "one shared stream for all slices; EpochSampler seed 1010000",
+  "splits": {
+    "train": "first 1000 MNIST training images",
+    "val": "MNIST training images 50000..59999",
+    "test": "10,000 MNIST test images, recorded only"
+  },
+  "loss": "nn.MSELoss mean over batch and 10 outputs, one-hot targets",
+  "dtype": "float64",
+  "tf32": false,
+  "evaluation_schedule": "steps after fork: 0-99 every step, 100-990 every 10, then every 100",
+  "metric_names": [
+    "train_acc",
+    "val_acc",
+    "test_acc",
+    "train_loss",
+    "val_loss",
+    "test_loss"
+  ],
+  "per_step_names": [
+    "global_norm",
+    "radial_coef",
+    "tangential_norm",
+    "pre_projection_norm",
+    "angle",
+    "dist_to_ref",
+    "batch_mse"
+  ],
+  "thresholds": [
+    0.6,
+    0.7,
+    0.8,
+    0.85,
+    0.9
+  ],
+  "tolerances": {
+    "replay_window_steps": 1000,
+    "replay_relative": 1e-09,
+    "norm_relative": 1e-10,
+    "resume_relative": 1e-09
+  },
+  "code_sha256": {
+    "run_direction.py": "1cfebf99b148e3585cc933072abecc9a826e49d4089772c0c8c021846394ef84",
+    "run_dynamics.py": "8e50e3084b44b64e9625d9357c6c6a3b077a1a8b5cd9fdd6a9492cfd98a194c4"
+  },
+  "official_commit": "3a0a57346230a7255e5390fcd565812d00f1a281"
+}
